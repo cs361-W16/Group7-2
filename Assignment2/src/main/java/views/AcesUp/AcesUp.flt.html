@@ -93,6 +93,7 @@
 
 <BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
 
+<BR> <button id="newGame">New Game</button>
 <script>
 
 var game;
@@ -169,7 +170,9 @@ $("#Remove3").click(function(){
 $("#Remove4").click(function(){
     removeCard(3);
 });
-
+$("#newGame").click(function(){
+    location.reload();
+});
 
 $("#moveButton").click(function(){
 var colFrom = $("#from_col").val();
