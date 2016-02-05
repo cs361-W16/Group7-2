@@ -5,9 +5,14 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 <body>
+<<<<<<< HEAD
+
+
+=======
 <div id="messageBox" >
     <p id="textArea"></p>
 </div>
+>>>>>>> b740f81c1c29e14be92e74d3f8f15e1d64026e62
 <div class="row">
 <div class="col-md-10">
 <table class="table">
@@ -160,15 +165,24 @@ url: "/removeCard/"+colNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
+//alert(game["errMsg"]);
+var errMsg=game["errMsg"];
+alert(JSON.stringify(game));
+//alert(errMsg);
+document.getElementByID("textArea").innerHTML = errMsg;
+alert(errMsg);
 display(data);},
+
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 });
 
 }
 
+//var textBox = document.getElementByID("textArea");
 
 $("#Remove1").click(function(){
+   //  textBox.text().replace(data["errMsg"]);
     removeCard(0);
 });
 $("#Remove2").click(function(){
