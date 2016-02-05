@@ -136,7 +136,7 @@ public class Game {
             if (removeCard) {
                 this.cols.get(columnNumber).remove(this.cols.get(columnNumber).size() - 1);
             }
-            else if (!removeCard) {
+            if (!removeCard) {
                 this.errMsg = "Invalid remove!";
             }
         }

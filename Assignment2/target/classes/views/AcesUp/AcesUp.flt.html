@@ -5,8 +5,14 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 <body>
+<<<<<<< HEAD
 
 
+=======
+<div id="messageBox" >
+    <p id="textArea"></p>
+</div>
+>>>>>>> b740f81c1c29e14be92e74d3f8f15e1d64026e62
 <div class="row">
 <div class="col-md-10">
 <table class="table">
@@ -102,6 +108,7 @@
 
 <BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
 
+<BR> <button id="newGame">New Game</button>
 <script>
 
 var game;
@@ -187,7 +194,9 @@ $("#Remove3").click(function(){
 $("#Remove4").click(function(){
     removeCard(3);
 });
-
+$("#newGame").click(function(){
+    location.reload();
+});
 
 $("#moveButton").click(function(){
 var colFrom = $("#from_col").val();
