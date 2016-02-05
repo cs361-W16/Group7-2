@@ -176,13 +176,12 @@ url: "/removeCard/"+colNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
-
-
+var errMsg=game["errMsg"];
 
 display(data);
-var errMsg=game["errMsg"];
+
 alert(errMsg);
-document.getElementByID("textArea").innerHTML = errMsg;
+document.getElementById("textArea").innerHTML=errMsg;
 },
 
 contentType:"application/json; charset=utf-8",

@@ -117,7 +117,6 @@ public class Game {
     }
 
     public void remove(int columnNumber) {
-
         if (colHasCards(columnNumber)) {
             Card c = getTopCard(columnNumber);
             Boolean removeCard = false;
@@ -135,6 +134,7 @@ public class Game {
             }
             if (removeCard) {
                 this.cols.get(columnNumber).remove(this.cols.get(columnNumber).size() - 1);
+                this.errMsg = "No Error";
             }
             if (!removeCard) {
                 this.errMsg = "Invalid remove!";
