@@ -5,9 +5,8 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 <body>
-<div id="messageBox" >
-    <p id="textArea"></p>
-</div>
+
+
 <div class="row">
 <div class="col-md-10">
 <table class="table">
@@ -177,15 +176,25 @@ url: "/removeCard/"+colNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
-display(data);},
+
+
+
+display(data);
+var errMsg=game["errMsg"];
+alert(errMsg);
+document.getElementByID("textArea").innerHTML = errMsg;
+},
+
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 });
 
 }
 
+//var textBox = document.getElementByID("textArea");
 
 $("#Remove1").click(function(){
+   //  textBox.text().replace(data["errMsg"]);
     removeCard(0);
 });
 $("#Remove2").click(function(){
