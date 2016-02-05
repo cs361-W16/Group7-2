@@ -2,10 +2,14 @@
 
 <link href="/assets/css/AcesUp.css" rel="stylesheet">
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 <body>
 
-<table>
+
+<div class="row">
+<div class="col-md-10">
+<table class="table">
     <tr class="title">
         <td>Column0</td>
         <td >Column1</td>
@@ -14,7 +18,7 @@
     </tr>
 
     <tr><td class="columnOfCards" id="c0">
-        <table>
+        <table class="table">
             <tr><td class="cardLocation l0"></td></tr>
             <tr><td class="cardLocation l1"></td></tr>
             <tr><td class="cardLocation l2"></td></tr>
@@ -32,7 +36,7 @@
         </table>
     </td>
         <td class="columnOfCards" id="c1">
-            <table>
+            <table class="table">
                 <tr><td class="cardLocation l0"></td></tr>
                 <tr><td class="cardLocation l1"></td></tr>
                 <tr><td class="cardLocation l2"></td></tr>
@@ -50,7 +54,7 @@
             </table>
         </td>
         <td class="columnOfCards" id="c2">
-            <table>
+            <table class="table">
                 <tr><td class="cardLocation l0"></td></tr>
                 <tr><td class="cardLocation l1"></td></tr>
                 <tr><td class="cardLocation l2"></td></tr>
@@ -68,7 +72,7 @@
             </table>
         </td>
         <td class="columnOfCards" id="c3">
-            <table>
+            <table class="table">
                 <tr><td class="cardLocation l0"></td></tr>
                 <tr><td class="cardLocation l1"></td></tr>
                 <tr><td class="cardLocation l2"></td></tr>
@@ -87,6 +91,11 @@
         </td>
     </tr>
 </table>
+</div>
+    <div id="messageBox" style="border:3px; border-style:solid; border-color:#000000; padding=1em; " class="col-md-2 bg-info">
+        <p id="textArea" >Append all text Here!! id=textArea for js purposes</p>
+    </div>
+</div>
 
 <button id="dealButton">Deal</button>
 <BR>Remove from: <button id="Remove1">Column1</button><button id="Remove2">Column2</button><button id="Remove3">Column3</button><button id="Remove4">Column4</button>
@@ -149,15 +158,24 @@ url: "/removeCard/"+colNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
+//alert(game["errMsg"]);
+var errMsg=game["errMsg"];
+alert(JSON.stringify(game));
+//alert(errMsg);
+document.getElementByID("textArea").innerHTML = errMsg;
+alert(errMsg);
 display(data);},
+
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 });
 
 }
 
+//var textBox = document.getElementByID("textArea");
 
 $("#Remove1").click(function(){
+   //  textBox.text().replace(data["errMsg"]);
     removeCard(0);
 });
 $("#Remove2").click(function(){
