@@ -200,21 +200,6 @@ $("#Remove4").click(function(){
 $("#newGame").click(function(){
     location.reload();
 });
-/*
-$("#moveButton").click(function(){
-var colFrom = $("#from_col").val();
-var colTo = $("#to_col").val();
-$.ajax({
-  type: "POST",
-  url: "/moveCard/"+colFrom+"/"+colTo,
-  data: JSON.stringify(game),
-  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-        game = data;
-        display(data);},
-  contentType:"application/json; charset=utf-8",
-  dataType:"json",
-});
-});*/
 
 $("#move").click(function(){
 var fromCol = document.getElementsByName('fromCol');
