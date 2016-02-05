@@ -13,6 +13,7 @@ public class Game {
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
 
+    public String errMsg="No Error";
 
     public Game(){
         cols.add(new ArrayList<Card>());
@@ -116,9 +117,10 @@ public class Game {
     }
 
     public void remove(int columnNumber) {
-        if(colHasCards(columnNumber)) {
+
+        if (colHasCards(columnNumber)) {
             Card c = getTopCard(columnNumber);
-            boolean removeCard = false;
+            Boolean removeCard = false;
             for (int i = 0; i < 4; i++) {
                 if (i != columnNumber) {
                     if (colHasCards(i)) {
@@ -134,7 +136,11 @@ public class Game {
             if (removeCard) {
                 this.cols.get(columnNumber).remove(this.cols.get(columnNumber).size() - 1);
             }
+            else if (!removeCard) {
+                this.errMsg = "Invalid remove!";
+            }
         }
+
     }
 
     private boolean colHasCards(int colNumber) {

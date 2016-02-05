@@ -62,6 +62,11 @@ public class testGame {
         assertEquals(0,g.cols.get(2).size());
     }
 
+    @Test
+    public void testerrMsg(){
+        Game g = new Game();
+        assertEquals("No Error", g.errMsg);
+    }
 
 
 }
