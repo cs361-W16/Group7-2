@@ -1,4 +1,4 @@
-<h1>Aces Up</h1>
+<div id="titleDiv"><h1 style="font-family:Palatino; font-size: 40px">Aces Up</h1></div>
 
 <link href="/assets/css/AcesUp.css" rel="stylesheet">
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
@@ -11,10 +11,10 @@
 <div class="col-md-10">
 <table class="table">
     <tr class="title">
-        <td>Column1</td>
-        <td >Column2</td>
-        <td >Column3</td>
-        <td >Column4</td>
+        <td>1</td>
+        <td >2</td>
+        <td >3</td>
+        <td >4</td>
     </tr>
 
     <tr><td class="columnOfCards" id="c0">
@@ -33,7 +33,7 @@
             <tr><td class="cardLocation l11"></td></tr>
             <tr><td class="cardLocation l12"></td></tr>
             <tr><td class="cardLocation l13"></td></tr>
-            <tr><td><button id="Remove1">Column1</button></td></tr>
+            <tr><td><button id="Remove1" class="btn btn-success">Remove</button></td></tr>
         </table>
     </td>
         <td class="columnOfCards" id="c1">
@@ -52,7 +52,7 @@
                 <tr><td class="cardLocation l11"></td></tr>
                 <tr><td class="cardLocation l12"></td></tr>
                 <tr><td class="cardLocation l13"></td></tr>
-                <tr><td><button id="Remove2">Column2</button></td></tr>
+                <tr><td><button id="Remove2" class="btn btn-success">Remove</button></td></tr>
             </table>
         </td>
         <td class="columnOfCards" id="c2">
@@ -71,7 +71,7 @@
                 <tr><td class="cardLocation l11"></td></tr>
                 <tr><td class="cardLocation l12"></td></tr>
                 <tr><td class="cardLocation l13"></td></tr>
-                <tr><td><button id="Remove3">Column3</button></td></tr>
+                <tr><td><button id="Remove3" class="btn btn-success">Remove</button></td></tr>
             </table>
         </td>
         <td class="columnOfCards" id="c3">
@@ -90,36 +90,50 @@
                 <tr><td class="cardLocation l11"></td></tr>
                 <tr><td class="cardLocation l12"></td></tr>
                 <tr><td class="cardLocation l13"></td></tr>
-                <tr><td><button id="Remove4">Column4</button></td></tr>
+                <tr><td><button id="Remove4" class="btn btn-success">Remove</button></td></tr>
             </table>
         </td>
     </tr>
 </table>
 </div>
-    <div id="messageBox" style="border:3px; border-style:solid; border-color:#000000; padding=1em; " class="col-md-2 bg-info">
-        <p id="textArea" >Append all text Here!! id=textArea for js purposes</p>
+
+    <br><br><br><br>
+    <p style="font-family:Century Gothic; font-size: 17px; float:right; padding-right: 4.5%">Message Box</p>
+    <div id="messageBox" style="border:0px; border-style:solid; border-color:; padding=1em; " class="col-md-2 bg-danger">
+        <p id="textArea" style="text-align:center">Message Box (id=textArea)</p>
     </div>
 </div>
-<div class="row">
-<div class="col-sm-4">
-    <button id="newGame">New Game</button>
-</div>
-<div class="col-sm-4">
-    <button id="dealButton">Deal</button>
+
+<div id="dealBtnDiv"><button id="dealButton">Deal</button></div>
+<div id="newgameAndInst">
+
+    <button id="newGame" class="btn btn-warning">New Game</button>&nbsp;
+    <button id="inst" class="btn btn-warning">Instructions</button>
 </div>
 
+<!--<div id="dealBtnDiv"><button id="dealButton">Deal</button></div>-->
+<div class="mvDiv"><button id="move" class="btn btn-danger">Move</button></div>
+<br>
+<br>
+
+
+<div class="radio">
+<div class="row">
+
 <div class="col-sm-4">
-    <input type="radio" name="fromCol" value="0" id="fromCol1"> Column 1
+    <input type="radio" name="fromCol" value="0" id="fromCol1"> Column 1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="radio" name="toCol" value="0" id="toCol1"> Column 1<br>
-    <input type="radio" name="fromCol" value="1" id="fromCol2"> Column 2
+    <input type="radio" name="fromCol" value="1" id="fromCol2"> Column 2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="radio" name="toCol" value="1" id="toCol2"> Column 2<br>
-    <input type="radio" name="fromCol" value="2" id="fromCol3"> Column 3
+    <input type="radio" name="fromCol" value="2" id="fromCol3"> Column 3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="radio" name="toCol" value="2" id="toCol3"> Column 3<br>
-    <input type="radio" name="fromCol" value="3" id="fromCol4"> Column 4
+    <input type="radio" name="fromCol" value="3" id="fromCol4"> Column 4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="radio" name="toCol" value="3" id="toCol4"> Column 4<br>
-    <button id="move">Move</button>
+
 </div>
 </div>
+</div>
+
 <script>
 
 var game;
@@ -130,19 +144,19 @@ console.log(game);
 $( '.columnOfCards .cardLocation' ).html("");
 
     $.each(game.cols[0], function( key, val ) {
-        $( '#c0 .l'+key ).html(val.value + val.suit);
+        $( '#c0 .l'+key ).html(val.value + " of " + val.suit);
     });
 
  $.each(game.cols[1], function( key, val ) {
-        $( '#c1 .l'+key ).html(val.value + val.suit);
+        $( '#c1 .l'+key ).html(val.value + " of " + val.suit);
     });
 
  $.each(game.cols[2], function( key, val ) {
-        $( '#c2 .l'+key ).html(val.value + val.suit);
+        $( '#c2 .l'+key ).html(val.value + " of " + val.suit);
     });
 
  $.each(game.cols[3], function( key, val ) {
-        $( '#c3 .l'+key ).html(val.value + val.suit);
+        $( '#c3 .l'+key ).html(val.value + " of " + val.suit);
     });
 
 
@@ -168,6 +182,10 @@ $.ajax({
 });
 });
 
+$("#inst").click(function(){
+    document.getElementById("textArea").innerHTML="Hello Baby!";
+});
+
 
 function removeCard(colNumber){
 $.ajax({
@@ -180,7 +198,6 @@ var errMsg=game["errMsg"];
 
 display(data);
 
-alert(errMsg);
 document.getElementById("textArea").innerHTML=errMsg;
 },
 
@@ -224,18 +241,25 @@ for (var i = 0; i < 4; i++){
     }
 }
 
+checkMove(fromColVal, toColVal);
+});
+
+function checkMove(fromColVal, toColVal){
 $.ajax({
   type: "POST",
   url: "/moveCard/"+fromColVal+"/"+toColVal,
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
-        display(data);},
+        var errMsg=game["errMsg"];
+        display(data);
+        document.getElementById("textArea").innerHTML=errMsg;
+},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
 
-});
+}
 
 
 </script>

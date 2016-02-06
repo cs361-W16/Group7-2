@@ -241,18 +241,25 @@ for (var i = 0; i < 4; i++){
     }
 }
 
+checkMove(fromColVal, toColVal);
+});
+
+function checkMove(fromColVal, toColVal){
 $.ajax({
   type: "POST",
   url: "/moveCard/"+fromColVal+"/"+toColVal,
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
-        display(data);},
+        var errMsg=game["errMsg"];
+        display(data);
+        document.getElementById("textArea").innerHTML=errMsg;
+},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
 
-});
+}
 
 
 </script>
