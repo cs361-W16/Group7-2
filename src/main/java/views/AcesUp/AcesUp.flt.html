@@ -111,7 +111,6 @@
     <button id="inst" class="btn btn-warning">Instructions</button>
 </div>
 
-<!--<div id="dealBtnDiv"><button id="dealButton">Deal</button></div>-->
 <div class="mvDiv"><button id="move" class="btn btn-danger">Move</button></div>
 <br>
 <br>
@@ -183,7 +182,7 @@ $.ajax({
 });
 
 $("#inst").click(function(){
-    document.getElementById("textArea").innerHTML="Aim: !";
+    document.getElementById("textArea").innerHTML = " If there are two or more cards of the same suit, discard all but the highest-ranked card of that suit. Whenever there are any empty spaces, you may choose the top card of another pile to be put into the empty space. To win is to have only the four aces left.";
 });
 
 
@@ -207,10 +206,7 @@ dataType:"json",
 
 }
 
-//var textBox = document.getElementByID("textArea");
-
 $("#Remove1").click(function(){
-   //  textBox.text().replace(data["errMsg"]);
     removeCard(0);
 });
 $("#Remove2").click(function(){
@@ -241,18 +237,25 @@ for (var i = 0; i < 4; i++){
     }
 }
 
+checkMove(fromColVal, toColVal);
+});
+
+function checkMove(fromColVal, toColVal){
 $.ajax({
   type: "POST",
   url: "/moveCard/"+fromColVal+"/"+toColVal,
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
-        display(data);},
+        var errMsg=game["errMsg"];
+        display(data);
+        document.getElementById("textArea").innerHTML=errMsg;
+},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
 
-});
+}
 
 
 </script>
