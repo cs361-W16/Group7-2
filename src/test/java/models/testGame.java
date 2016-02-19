@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
  */
 public class testGame
 {
-
+/*
     @Test
     public void testGameCreation()
     {
@@ -93,4 +93,5 @@ public class testGame
         Game g = new Game();
         assertEquals("No Error", g.errMsg);
     }
+    */
 }

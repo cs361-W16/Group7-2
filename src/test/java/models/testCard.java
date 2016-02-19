@@ -59,7 +59,7 @@ public class testCard
         Card c = new Card(3,null,spanishSuit.Swords);
         assertEquals("3Swords",c.toString());
     }
-
+/*
     @Test
     public void testMoveCard()
     {
@@ -73,5 +73,5 @@ public class testCard
         assertEquals(0,g.cols.get(0).size());
     }
 
-
+*/
 }
