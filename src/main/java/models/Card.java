@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Created by michaelhilton on 1/25/16.
  */
 
-public class Card implements Serializable {
+public class Card implements Serializable{
     public final int value;
     public final Suit suit;
 

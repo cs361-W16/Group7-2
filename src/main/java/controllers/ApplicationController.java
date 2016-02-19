@@ -36,11 +36,17 @@ public class ApplicationController {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
     
-    public Result gameGet(){
+    public Result gameGet(@PathParam("choice") int choice){
         Game g = new Game();
-        g.buildDeck();
+        if(choice == 1) {
+            g.buildDeck();  // build american deck
+        }
+        else{
+            g.buildDeck(); // build spanish deck
+        }
+        //g.buildDeck();
         g.shuffle();
-        g.dealFour();
+        //g.dealFour();
 
         return Results.json().render(g);
     }
