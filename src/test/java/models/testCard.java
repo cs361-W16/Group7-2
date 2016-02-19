@@ -59,11 +59,11 @@ public class testCard
         Card c = new Card(3,null,spanishSuit.Swords);
         assertEquals("3Swords",c.toString());
     }
-/*
+
     @Test
     public void testMoveCard()
     {
-        Game g = new Game();
+        Game g = new amGame();
         g.buildDeck();
         g.customDeal(0,3,6,9);
         g.remove(2);
@@ -73,5 +73,5 @@ public class testCard
         assertEquals(0,g.cols.get(0).size());
     }
 
-*/
+
 }

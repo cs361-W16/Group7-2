@@ -9,13 +9,13 @@ import java.io.Serializable;
  * Created by michaelhilton on 1/25/16.
  */
 
-public class Card implements Serializable {
+public class Card implements Serializable{
     public final int value;
     public final americanSuit amSuit;
     public final spanishSuit spSuit;
 
     @JsonCreator
-    public Card(@JsonProperty("value") int value, @JsonProperty("americanSuit") americanSuit amSuit, @JsonProperty("spSuit") spanishSuit spSuit)
+    public Card(@JsonProperty("value") int value, @JsonProperty("americanSuit") americanSuit amSuit, @JsonProperty("spanishSuit") spanishSuit spSuit)
     {
         this.value = value;
         this.amSuit = amSuit;

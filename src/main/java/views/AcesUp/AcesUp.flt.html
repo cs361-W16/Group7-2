@@ -139,29 +139,6 @@
 <script>
 
 var game;
-
-function display(game) {
-console.log(game);
-
-$( '.columnOfCards .cardLocation' ).html("");
-
-  $.each(game.cols[0], function( key, val ) {
-        $( '#c0 .l'+key ).html(val.value + " of " + val.suit);
-    });
-
- $.each(game.cols[1], function( key, val ) {
-        $( '#c1 .l'+key ).html(val.value + " of " + val.suit);
-    });
-
- $.each(game.cols[2], function( key, val ) {
-        $( '#c2 .l'+key ).html(val.value + " of " + val.suit);
-    });
-
- $.each(game.cols[3], function( key, val ) {
-        $( '#c3 .l'+key ).html(val.value + " of " + val.suit);
-    });
-}
-/*
 // Checking for radio input
 var prev = null;
 var userCheck = document.getElementsByName('choose');
@@ -175,9 +152,7 @@ for (var i = 0; i < 2; i++){
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
-        display(data);
-        //console.log(JSON.stringify(game));
-        },
+        display(data);},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
@@ -189,41 +164,77 @@ for (var i = 0; i < 2; i++){
         }
         option = this.value;
     };
-
 }
-*/
+function display(game) {
+console.log(game);
 
-var option=0;
+$( '.columnOfCards .cardLocation' ).html("");
+
+    if(option == 0){
+      $.each(game.cols[0], function( key, val ) {
+            $( '#c0 .l'+key ).html(val.value + " of " + val.spSuit);
+        });
+
+     $.each(game.cols[1], function( key, val ) {
+            $( '#c1 .l'+key ).html(val.value + " of " + val.spSuit);
+        });
+
+     $.each(game.cols[2], function( key, val ) {
+            $( '#c2 .l'+key ).html(val.value + " of " + val.spSuit);
+        });
+
+     $.each(game.cols[3], function( key, val ) {
+            $( '#c3 .l'+key ).html(val.value + " of " + val.spSuit);
+        });
+        }
+    else{
+          $.each(game.cols[0], function( key, val ) {
+            $( '#c0 .l'+key ).html(val.value + " of " + val.amSuit);
+        });
+
+     $.each(game.cols[1], function( key, val ) {
+            $( '#c1 .l'+key ).html(val.value + " of " + val.amSuit);
+        });
+
+     $.each(game.cols[2], function( key, val ) {
+            $( '#c2 .l'+key ).html(val.value + " of " + val.amSuit);
+        });
+
+     $.each(game.cols[3], function( key, val ) {
+            $( '#c3 .l'+key ).html(val.value + " of " + val.amSuit);
+        });
+    }
+}
+
+
+
 
 $("#dealButton").click(function(){
 
 // deal for Spanish deck
 if(option == 0){
-console.log("Hello from the spanish deal");
-    $.ajax({
-      type: "POST",
-      url: "/dealspGame",
-      data: JSON.stringify(game),
-      success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-            game = data;
-            display(data);},
-        error: function(xhr, data, thrownError){game=data;console.log(JSON.stringify(game));},
-      contentType:"application/json; charset=utf-8",
-      dataType:"json",
-    });
-}
-
-// deal for american deck
-else{
-
 $.ajax({
   type: "POST",
-  url: "/dealamGame",
+  url: "/dealSpGame",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
         display(data);},
-  error: function(xhr, data, thrownError){console.log(data);},
+  error: function(xhr, data, thrownError){console.log(game);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+}
+
+// deal for american deck
+else{
+$.ajax({
+  type: "POST",
+  url: "/dealAmGame",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
@@ -236,9 +247,10 @@ $("#inst").click(function(){
 
 
 function removeCard(colNumber){
+if(option == 0){
 $.ajax({
 type: "POST",
-url: "/removeCard/"+colNumber,
+url: "/removeCardsp/"+colNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
@@ -252,7 +264,26 @@ document.getElementById("textArea").innerHTML=errMsg;
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 });
+}
 
+else{
+$.ajax({
+type: "POST",
+url: "/removeCardam/"+colNumber,
+data: JSON.stringify(game),
+success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+game = data;
+var errMsg=game["errMsg"];
+
+display(data);
+
+document.getElementById("textArea").innerHTML=errMsg;
+},
+
+contentType:"application/json; charset=utf-8",
+dataType:"json",
+});
+}
 }
 
 $("#Remove1").click(function(){
@@ -290,9 +321,10 @@ checkMove(fromColVal, toColVal);
 });
 
 function checkMove(fromColVal, toColVal){
+if(option == 0){
 $.ajax({
   type: "POST",
-  url: "/moveCard/"+fromColVal+"/"+toColVal,
+  url: "/moveCardsp/"+fromColVal+"/"+toColVal,
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
@@ -303,6 +335,22 @@ $.ajax({
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
+}
+else{
+$.ajax({
+  type: "POST",
+  url: "/moveCardam/"+fromColVal+"/"+toColVal,
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        var errMsg=game["errMsg"];
+        display(data);
+        document.getElementById("textArea").innerHTML=errMsg;
+},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+}
 
 }
 
