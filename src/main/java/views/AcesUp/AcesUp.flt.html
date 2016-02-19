@@ -163,12 +163,6 @@ $( '.columnOfCards .cardLocation' ).html("");
 
 }
 
-$.getJSON("http://localhost:8080/game", function( data ) {
-display(data);
-game = data;
-
-});
-
 // Checking for radio input
 var prev = null;
 var userCheck = document.getElementsByName('choose');
@@ -176,7 +170,7 @@ for (var i = 0; i < 2; i++){
     // Function that checks if the user changed deck option
     userCheck[i].onclick = function() {
     $.ajax({
-  type: "POST",
+  type: "GET",
   url: "/game/"+this.value,
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
