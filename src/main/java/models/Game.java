@@ -72,7 +72,6 @@ public abstract class Game
             Card cardToMove = getTopCard(colFrom);
             this.removeCardFromCol(colFrom);
             this.addCardToCol(colTo, cardToMove);
-
         }
     }
 
@@ -82,9 +81,5 @@ public abstract class Game
 
     protected void removeCardFromCol(int colFrom) {
         this.cols.get(colFrom).remove(this.cols.get(colFrom).size()-1);
-
-        //I think that should conflict...
-        //Did it work yet?
-
     }
 }
