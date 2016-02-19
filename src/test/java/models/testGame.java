@@ -7,16 +7,19 @@ import static org.junit.Assert.*;
 /**
  * Created by michaelhilton on 1/25/16.
  */
-public class testGame {
+public class testGame
+{
 
     @Test
-    public void testGameCreation(){
+    public void testGameCreation()
+    {
         Game g = new Game();
         assertNotNull(g);
     }
 
     @Test
-    public void testGameBuildDeck(){
+    public void testGameBuildDeck()
+    {
         Game g = new Game();
         g.buildDeck();
         assertEquals(52,g.deck.size());
@@ -31,7 +34,18 @@ public class testGame {
     }
 
     @Test
-    public void testGameInit(){
+    public void testRightSpanishCardsMade()
+    {
+        Game g = new Game();
+        g.buildSpanishDeck();
+
+        Card c = new Card(9,null,spanishSuit.Swords);
+        assertFalse(g.deck.contains(c));
+    }
+
+    @Test
+    public void testGameInit()
+    {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
@@ -39,7 +53,8 @@ public class testGame {
     }
 
     @Test
-    public void testGameStart(){
+    public void testGameStart()
+    {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
@@ -51,7 +66,8 @@ public class testGame {
     }
 
     @Test
-    public void testCustomDeal(){
+    public void testCustomDeal()
+    {
         Game g = new Game();
         g.buildDeck();
         g.customDeal(0,3,6,9);
@@ -62,7 +78,8 @@ public class testGame {
     }
 
     @Test
-    public void testRemoveFunction(){
+    public void testRemoveFunction()
+    {
         Game g = new Game();
         g.buildDeck();
         g.customDeal(0,3,6,9);
@@ -71,7 +88,8 @@ public class testGame {
     }
 
     @Test
-    public void testerMsg(){
+    public void testerMsg()
+    {
         Game g = new Game();
         assertEquals("No Error", g.errMsg);
     }

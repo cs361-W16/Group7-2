@@ -4,10 +4,34 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 /**
  * Created by michaelhilton on 1/26/16.
  */
-public class testCard {
+public class testCard
+{
+    @Test
+    public void testObjCreation()
+    {
+        Card c = new Card(5,null,spanishSuit.Cups);
+        assertNotNull(c);
+    }
+
+    @Test
+    public void testIfRightObj()
+    {
+        Card c = new Card(5,americanSuit.Clubs,null);
+        assertThat(c,instanceOf(Card.class));
+    }
+
+    @Test
+    public void testGetValue()
+    {
+        Card c = new Card(5,null,spanishSuit.Swords);
+        assertEquals(5,c.getValue());
+    }
+
     @Test
     public void testGetAmericanSuit()
     {
