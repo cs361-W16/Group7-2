@@ -160,12 +160,12 @@ $( '.columnOfCards .cardLocation' ).html("");
  $.each(game.cols[3], function( key, val ) {
         $( '#c3 .l'+key ).html(val.value + " of " + val.suit);
     });
-
 }
 
 // Checking for radio input
 var prev = null;
 var userCheck = document.getElementsByName('choose');
+var option;
 for (var i = 0; i < 2; i++){
     // Function that checks if the user changed deck option
     userCheck[i].onclick = function() {
@@ -174,6 +174,7 @@ for (var i = 0; i < 2; i++){
   url: "/game/"+this.value,
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+
         game = data;
         display(data);},
   contentType:"application/json; charset=utf-8",
@@ -185,21 +186,43 @@ for (var i = 0; i < 2; i++){
         else{
             document.getElementById("choice").innerHTML = "Deck: American";
         }
+        option = this.value;
     };
+
 }
 
 
 $("#dealButton").click(function(){
+
+// deal for Spanish deck
+if(option == 0){
 $.ajax({
   type: "POST",
-  url: "/dealGame",
+  url: "/dealspGame",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
         display(data);},
+    error: function(xhr, data, thrownError){console.log(JSON.stringify(game));},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
+}
+
+// deal for american deck
+else{
+$.ajax({
+  type: "POST",
+  url: "/dealamGame",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  //error: function(xhr, data, thrownError){console.log(JSON.stringify(game));},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+}
 });
 
 $("#inst").click(function(){

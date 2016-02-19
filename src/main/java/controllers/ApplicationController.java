@@ -17,6 +17,8 @@
 package controllers;
 
 import models.Game;
+import models.amGame;
+import models.spGame;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
@@ -37,24 +39,36 @@ public class ApplicationController {
     }
     
     public Result gameGet(@PathParam("choice") int choose){
-        Game g = new Game();
-        if(choose == 1) {
-            g.buildDeck();  // build american deck
-        }
-        else {
-            g.buildDeck(); // build spanish deck
-        }
-        g.shuffle();
-        //g.dealFour();
+        Game g = new amGame();
+        Game g2 = new spGame();
 
-        return Results.json().render(g);
+        // build american deck
+        if(choose == 1) {
+            g.buildDeck();
+            g.shuffle();
+            return Results.json().render(g);
+        }
+
+        // build spanish deck
+        else {
+            g2.buildDeck();
+            g2.shuffle();
+            return Results.json().render(g2);
+        }
     }
 
-    public Result dealPost(Context context, Game g) {
+    public Result dealamPost(Context context, amGame g) {
         if(context.getRequestPath().contains("deal")){
             g.dealFour();
         }
         return Results.json().render(g);
+    }
+
+    public Result dealspPost(Context context, spGame g2) {
+        if(context.getRequestPath().contains("deal")){
+            g2.dealFour();
+        }
+        return Results.json().render(g2);
     }
 
     public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){

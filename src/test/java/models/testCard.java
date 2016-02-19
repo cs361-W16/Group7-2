@@ -9,19 +9,36 @@ import static org.junit.Assert.*;
  */
 public class testCard {
     @Test
-    public void testGetSuit(){
-        Card c = new Card(5,Suit.Clubs);
-        assertEquals(Suit.Clubs,c.getSuit());
+    public void testGetAmericanSuit()
+    {
+        Card c = new Card(5,americanSuit.Clubs,null);
+        assertEquals(americanSuit.Clubs,c.getAmericanSuit());
     }
 
     @Test
-    public void testToString(){
-        Card c = new Card(5,Suit.Clubs);
+    public void testGetSpanishSuit()
+    {
+        Card c = new Card(7,null,spanishSuit.Swords);
+        assertEquals(spanishSuit.Swords,c.getSpanishSuit());
+    }
+
+    @Test
+    public void testToStringAmerican()
+    {
+        Card c = new Card(5,americanSuit.Clubs,null);
         assertEquals("5Clubs",c.toString());
     }
 
     @Test
-    public void testMoveCard(){
+    public void testToStringSpanish()
+    {
+        Card c = new Card(3,null,spanishSuit.Swords);
+        assertEquals("3Swords",c.toString());
+    }
+/*
+    @Test
+    public void testMoveCard()
+    {
         Game g = new Game();
         g.buildDeck();
         g.customDeal(0,3,6,9);
@@ -32,5 +49,5 @@ public class testCard {
         assertEquals(0,g.cols.get(0).size());
     }
 
-
+*/
 }

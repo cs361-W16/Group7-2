@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
  * Created by michaelhilton on 1/25/16.
  */
 public class testGame {
-
+/*
     @Test
     public void testGameCreation(){
         Game g = new Game();
@@ -20,6 +20,14 @@ public class testGame {
         Game g = new Game();
         g.buildDeck();
         assertEquals(52,g.deck.size());
+    }
+
+    @Test
+    public void testSpanishGameBuildDeck()
+    {
+        Game g = new Game();
+        g.buildSpanishDeck();
+        assertEquals(40,g.deck.size());
     }
 
     @Test
@@ -63,10 +71,8 @@ public class testGame {
     }
 
     @Test
-    public void testerrMsg(){
+    public void testerMsg(){
         Game g = new Game();
         assertEquals("No Error", g.errMsg);
-    }
-
-
+    }*/
 }
