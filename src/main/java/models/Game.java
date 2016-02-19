@@ -25,10 +25,6 @@ public abstract class Game
 
     public abstract void buildDeck();
 
-
-
-
-
     public void shuffle() {
         long seed = System.nanoTime();
         Collections.shuffle(deck, new Random(seed));
@@ -54,9 +50,6 @@ public abstract class Game
     }
 
     public abstract void remove(int columnNumber);
-
-
-
 
     protected boolean colHasCards(int colNumber) {
         if(this.cols.get(colNumber).size()>0){
