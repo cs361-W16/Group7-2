@@ -17,6 +17,8 @@
 package controllers;
 
 import models.Game;
+import models.amGame;
+import models.spGame;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
@@ -36,30 +38,56 @@ public class ApplicationController {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
     
-    public Result gameGet(){
-        Game g = new Game();
-        g.buildDeck();
-        g.shuffle();
-        g.dealFour();
+    public Result gameGet(@PathParam("choice") int choose){
+        amGame g = new amGame();
+        spGame g2 = new spGame();
 
-        return Results.json().render(g);
+        // build american deck
+        if(choose == 1) {
+            g.buildDeck();
+            g.shuffle();
+            return Results.json().render(g);
+        }
+
+        // build spanish deck
+        else {
+            g2.buildDeck();
+            g2.shuffle();
+            return Results.json().render(g2);
+        }
     }
 
-    public Result dealPost(Context context, Game g) {
+    public Result dealamPost(Context context, amGame g) {
         if(context.getRequestPath().contains("deal")){
             g.dealFour();
         }
         return Results.json().render(g);
     }
 
-    public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
+    public Result dealspPost(Context context, spGame g2) {
+        if(context.getRequestPath().contains("deal")){
+            g2.dealFour();
+        }
+        return Results.json().render(g2);
+    }
+
+    public Result removeamCard(Context context, @PathParam("column") int colNumber, amGame g){
         g.remove(colNumber);
         return  Results.json().render(g);
     }
 
-    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g){
+    public Result removespCard(Context context, @PathParam("column") int colNumber, spGame g){
+        g.remove(colNumber);
+        return  Results.json().render(g);
+    }
+
+    public Result moveAmCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, amGame g){
         g.move(colFrom,colTo);
         return  Results.json().render(g);
     }
 
+    public Result moveSpCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, spGame g){
+        g.move(colFrom,colTo);
+        return  Results.json().render(g);
+    }
 }

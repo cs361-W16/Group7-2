@@ -28,13 +28,16 @@ public class Routes implements ApplicationRoutes {
     public void init(Router router) {  
         
         router.GET().route("/").with(ApplicationController.class, "index");
-//        router.GET().route("/hello_world.json").with(ApplicationController.class, "helloWorldJson");
+//      router.GET().route("/hello_world.json").with(ApplicationController.class, "helloWorldJson");
         router.GET().route("/AcesUp").with(ApplicationController.class, "acesUp");
 
-        router.GET().route("/game").with(ApplicationController.class, "gameGet");
-        router.POST().route("/dealGame").with(ApplicationController.class, "dealPost");
-        router.POST().route("/moveCard/{columnFrom}/{columnTo}").with(ApplicationController.class, "moveCard");
-        router.POST().route("/removeCard/{column}").with(ApplicationController.class, "removeCard");
+        router.GET().route("/game/{choice}").with(ApplicationController.class, "gameGet");
+        router.POST().route("/dealAmGame").with(ApplicationController.class, "dealamPost");
+        router.POST().route("/dealSpGame").with(ApplicationController.class, "dealspPost");
+        router.POST().route("/moveCardam/{columnFrom}/{columnTo}").with(ApplicationController.class, "moveAmCard");
+        router.POST().route("/moveCardsp/{columnFrom}/{columnTo}").with(ApplicationController.class, "moveSpCard");
+        router.POST().route("/removeCardam/{column}").with(ApplicationController.class, "removeamCard");
+        router.POST().route("/removeCardsp/{column}").with(ApplicationController.class, "removespCard");
 
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)
