@@ -39,8 +39,8 @@ public class ApplicationController {
     }
     
     public Result gameGet(@PathParam("choice") int choose){
-        Game g = new amGame();
-        Game g2 = new spGame();
+        amGame g = new amGame();
+        spGame g2 = new spGame();
 
         // build american deck
         if(choose == 1) {
@@ -71,14 +71,23 @@ public class ApplicationController {
         return Results.json().render(g2);
     }
 
-    public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
+    public Result removeamCard(Context context, @PathParam("column") int colNumber, amGame g){
         g.remove(colNumber);
         return  Results.json().render(g);
     }
 
-    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g){
+    public Result removespCard(Context context, @PathParam("column") int colNumber, spGame g){
+        g.remove(colNumber);
+        return  Results.json().render(g);
+    }
+
+    public Result moveAmCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, amGame g){
         g.move(colFrom,colTo);
         return  Results.json().render(g);
     }
 
+    public Result moveSpCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, spGame g){
+        g.move(colFrom,colTo);
+        return  Results.json().render(g);
+    }
 }

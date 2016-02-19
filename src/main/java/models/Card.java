@@ -15,16 +15,9 @@ public class Card implements Serializable{
     public final spanishSuit spSuit;
 
     @JsonCreator
-    public Card(@JsonProperty("value") int value, @JsonProperty("suit") americanSuit amSuit, @JsonProperty spanishSuit spSuit)
+    public Card(@JsonProperty("value") int value, @JsonProperty("americanSuit") americanSuit amSuit, @JsonProperty("spanishSuit") spanishSuit spSuit)
     {
         this.value = value;
-        /*if(amSuit == null){
-            this.spSuit = spSuit;
-
-        }
-        else{
-            this.amSuit = amSuit;
-        }*/
         this.amSuit = amSuit;
         this.spSuit = spSuit;
     }
