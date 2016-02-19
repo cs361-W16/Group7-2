@@ -7,7 +7,8 @@ import java.util.Random;
 /**
  * Created by michaelhilton on 1/25/16.
  */
-public class Game {
+public class Game
+{
 
     public java.util.List<Card> deck = new ArrayList<>();
 
@@ -22,75 +23,33 @@ public class Game {
         cols.add(new ArrayList<Card>());
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //I like space between my methods
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void buildDeck() {
         for(int i = 2; i < 15; i++){
-            deck.add(new Card(i,Suit.Clubs));
-            deck.add(new Card(i,Suit.Hearts));
-            deck.add(new Card(i,Suit.Diamonds));
-            deck.add(new Card(i,Suit.Spades));
+            deck.add(new Card(i,americanSuit.Clubs,null));
+            deck.add(new Card(i,americanSuit.Hearts,null));
+            deck.add(new Card(i,americanSuit.Diamonds,null));
+            deck.add(new Card(i,americanSuit.Spades,null));
         }
     }
 
+    public void buildSpanishDeck()
+    {
+        for (int i=1;i<8;i++)
+        {
+            deck.add(new Card(i,null,spanishSuit.Clubs));
+            deck.add(new Card(i,null,spanishSuit.Coins));
+            deck.add(new Card(i,null,spanishSuit.Swords));
+            deck.add(new Card(i,null,spanishSuit.Cups));
+        }
 
-
-
-
-
-
-
-
-
-
-
-    //I like space between my methods
-
-
-
-
-
-
-
-
-
-
-
-
-
+        for(int i=10;i<13;i++)
+        {
+            deck.add(new Card(i,null,spanishSuit.Clubs));
+            deck.add(new Card(i,null,spanishSuit.Coins));
+            deck.add(new Card(i,null,spanishSuit.Swords));
+            deck.add(new Card(i,null,spanishSuit.Cups));
+        }
+    }
 
     public void shuffle() {
         long seed = System.nanoTime();
@@ -124,7 +83,7 @@ public class Game {
                 if (i != columnNumber) {
                     if (colHasCards(i)) {
                         Card compare = getTopCard(i);
-                        if (compare.getSuit() == c.getSuit()) {
+                        if (compare.getAmericanSuit() == c.getAmericanSuit()) {
                             if (compare.getValue() > c.getValue()) {
                                 removeCard = true;
                             }

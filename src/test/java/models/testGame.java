@@ -23,6 +23,14 @@ public class testGame {
     }
 
     @Test
+    public void testSpanishGameBuildDeck()
+    {
+        Game g = new Game();
+        g.buildSpanishDeck();
+        assertEquals(40,g.deck.size());
+    }
+
+    @Test
     public void testGameInit(){
         Game g = new Game();
         g.buildDeck();
@@ -63,10 +71,8 @@ public class testGame {
     }
 
     @Test
-    public void testerrMsg(){
+    public void testerMsg(){
         Game g = new Game();
         assertEquals("No Error", g.errMsg);
     }
-
-
 }
