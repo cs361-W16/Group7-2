@@ -11,8 +11,8 @@ import java.io.Serializable;
 
 public class Card implements Serializable {
     public final int value;
-    public americanSuit amSuit;
-    public spanishSuit spSuit;
+    public final americanSuit amSuit;
+    public final spanishSuit spSuit;
 
     @JsonCreator
     public Card(@JsonProperty("value") int value, @JsonProperty("suit") americanSuit amSuit, @JsonProperty spanishSuit spSuit)
@@ -20,7 +20,6 @@ public class Card implements Serializable {
         this.value = value;
         this.amSuit = amSuit;
         this.spSuit = spSuit;
-
     }
 
     public americanSuit getAmericanSuit()

@@ -7,8 +7,11 @@ import java.util.Random;
 /**
  * Created by michaelhilton on 1/25/16.
  */
-public class Game
+public abstract class Game
 {
+    //abstract functions for spanish and american games
+    public abstract void remove(int columnNumber);
+    public abstract void buildDeck();
 
     public java.util.List<Card> deck = new ArrayList<>();
 
@@ -22,36 +25,6 @@ public class Game
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
-    }
-
-    public void buildDeck()
-    {
-        for(int i = 2; i < 15; i++)
-        {
-            deck.add(new Card(i,americanSuit.Clubs,null));
-            deck.add(new Card(i,americanSuit.Hearts,null));
-            deck.add(new Card(i,americanSuit.Diamonds,null));
-            deck.add(new Card(i,americanSuit.Spades,null));
-        }
-    }
-
-    public void buildSpanishDeck()
-    {
-        for (int i=1;i<8;i++)
-        {
-            deck.add(new Card(i,null,spanishSuit.Clubs));
-            deck.add(new Card(i,null,spanishSuit.Coins));
-            deck.add(new Card(i,null,spanishSuit.Swords));
-            deck.add(new Card(i,null,spanishSuit.Cups));
-        }
-
-        for(int i=10;i<13;i++)
-        {
-            deck.add(new Card(i,null,spanishSuit.Clubs));
-            deck.add(new Card(i,null,spanishSuit.Coins));
-            deck.add(new Card(i,null,spanishSuit.Swords));
-            deck.add(new Card(i,null,spanishSuit.Cups));
-        }
     }
 
     public void shuffle()
@@ -82,45 +55,7 @@ public class Game
         deck.remove(c4);
     }
 
-    public void remove(int columnNumber)
-    {
-        if (colHasCards(columnNumber))
-        {
-            Card c = getTopCard(columnNumber);
-            Boolean removeCard = false;
-            for (int i = 0; i < 4; i++)
-            {
-                if (i != columnNumber)
-                {
-                    if (colHasCards(i))
-                    {
-                        Card compare = getTopCard(i);
-                        if (compare.getAmericanSuit() == c.getAmericanSuit())
-                        {
-                            if (compare.getValue() > c.getValue())
-                            {
-                                removeCard = true;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (removeCard)
-            {
-                this.cols.get(columnNumber).remove(this.cols.get(columnNumber).size() - 1);
-                this.errMsg = "No Error";
-            }
-
-            if (!removeCard)
-            {
-                this.errMsg = "Invalid remove!";
-            }
-        }
-
-    }
-
-    private boolean colHasCards(int colNumber)
+    protected boolean colHasCards(int colNumber)
     {
         if(this.cols.get(colNumber).size()>0)
         {
@@ -129,7 +64,7 @@ public class Game
         return false;
     }
 
-    private Card getTopCard(int columnNumber)
+    protected Card getTopCard(int columnNumber)
     {
         return this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1);
     }
@@ -151,13 +86,17 @@ public class Game
         }
     }
 
-    private void addCardToCol(int colTo, Card cardToMove)
+    protected void addCardToCol(int colTo, Card cardToMove)
     {
         cols.get(colTo).add(cardToMove);
     }
 
-    private void removeCardFromCol(int colFrom)
+    protected void removeCardFromCol(int colFrom)
     {
         this.cols.get(colFrom).remove(this.cols.get(colFrom).size()-1);
+
+        //I think that should conflict...
+        //Did it work yet?
+
     }
 }
