@@ -4,43 +4,50 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 /**
- * Created by michaelhilton on 1/25/16.
+ * Created by ramcharan on 2/19/16.
  */
-public class testGame {
-/*
+public class testAmericanGame
+{
     @Test
-    public void testGameCreation(){
-        Game g = new Game();
+    public void testAmGameCreation()
+    {
+        Game g = new amGame();
         assertNotNull(g);
     }
 
     @Test
-    public void testGameBuildDeck(){
-        Game g = new Game();
+    public void testAmGameClass()
+    {
+        Game g = new amGame();
+        assertThat(g,instanceOf(amGame.class));
+    }
+
+    @Test
+    public void testBuildDeck()
+    {
+        Game g = new amGame();
         g.buildDeck();
+
         assertEquals(52,g.deck.size());
     }
 
     @Test
-    public void testSpanishGameBuildDeck()
+    public void testAmGameShuffle()
     {
-        Game g = new Game();
-        g.buildSpanishDeck();
-        assertEquals(40,g.deck.size());
-    }
-
-    @Test
-    public void testGameInit(){
-        Game g = new Game();
+        Game g = new amGame();
         g.buildDeck();
         g.shuffle();
+
         assertNotEquals(2,g.deck.get(0).getValue());
     }
 
     @Test
-    public void testGameStart(){
-        Game g = new Game();
+    public void testAmGameStart()
+    {
+        Game g = new amGame();
         g.buildDeck();
         g.shuffle();
         g.dealFour();
@@ -51,8 +58,9 @@ public class testGame {
     }
 
     @Test
-    public void testCustomDeal(){
-        Game g = new Game();
+    public void testAmCustomDeal()
+    {
+        Game g = new amGame();
         g.buildDeck();
         g.customDeal(0,3,6,9);
         assertEquals("2Clubs",g.cols.get(0).get(0).toString());
@@ -62,8 +70,9 @@ public class testGame {
     }
 
     @Test
-    public void testRemoveFunction(){
-        Game g = new Game();
+    public void testAmRemoveFunction()
+    {
+        Game g = new amGame();
         g.buildDeck();
         g.customDeal(0,3,6,9);
         g.remove(2);
@@ -71,8 +80,9 @@ public class testGame {
     }
 
     @Test
-    public void testerMsg(){
-        Game g = new Game();
+    public void testerMsg()
+    {
+        Game g = new amGame();
         assertEquals("No Error", g.errMsg);
-    }*/
+    }
 }
